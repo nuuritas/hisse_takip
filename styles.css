@@ -1,0 +1,93 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+}
+
+#dashboard-container h1 {
+  color: #fff;
+}
+
+#table-container {
+  display: block;
+  margin-top: 20px;
+  padding: 20px;
+}
+
+#fetch-button {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 30px;
+  background-color: #0f4c81;
+  color: #fff;
+  border: none;
+  font-family: Montserrat, sans-serif;
+  font-size: 16px;
+}
+
+#create_chart {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 30px;
+  background-color: #2d7663;
+  color: #fff;
+  border: none;
+  font-family: Montserrat, sans-serif;
+  font-size: 16px;
+}
+
+table.dataTable {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table.dataTable td,
+table.dataTable th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  background-color: #0e0b0b;
+  font-family: Montserrat, sans-serif;
+  font-weight: bold;
+  color : #fff;
+}
+
+table.dataTable thead th {
+  background-color: olive;
+  color: #fff;
+  font-weight: bold;
+}
+
+.dataTables_length,
+.dataTables_filter,
+.dataTables_info,
+.dataTables_paginate {
+  display: none;
+}
+
+#chart-container,
+#pie-chart-container {
+  width: 50%;
+  float: left;
+}
+
+#dashboard-container h1 {
+  display: block;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.highcharts-title,
+.highcharts-axis-labels span,
+.highcharts-data-labels text {
+  fill: #fff !important;
+}
+
+.highcharts-series-0 .highcharts-graph {
+  stroke: "#8249CF" !important;
+}
+
+.nav-tabs {
+  font-family: Montserrat, sans-serif;
+  font-weight: bold;
+  color : #fff;
+}
