@@ -8,17 +8,23 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
   <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-  <script src="chart.js"></script>
+  <script src="index.js"></script>
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
-  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="stylesheet" type="text/css" href="index.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
 <body>
   <body style="background-color: #1a1616;">
-  <div id="dashboard-container">
-    <h1>Erdal Bey Hisse Takip</h1>
+    <div id="dashboard-container">
+      <div class="circle-container">
+        <h1>Erdal Kaya Hisse Takibi</h1>
+        <center><h4 id="update-date" class = "white-text">Güncellenme Tarihi: </h4></center>
+        <span class="white-circle">
+          <img src = "ek.jpg" alt = "EK" class = "circle-image" />
+        </span>
+      </div>    
     <ul class="nav nav-tabs">
       <li class="active"><a data-toggle="tab" href="#table-tab">Güncel Tablo</a></li>
       <li><a data-toggle="tab" href="#chart-tab">Maliyet & Portföy Dağılımı</a></li>
@@ -47,6 +53,7 @@
   <script>
     createChart();
     fetchPortfolio();
+    setCurrentDate();
 
     // Tabbed interface
     $('.tab-link').click(function(){
@@ -57,5 +64,10 @@
       $('#'+tabId).addClass('current');
     });
   </script>
+  <footer id="footer">
+    <a href="https://docs.google.com/spreadsheets/d/1Hgec6ktnrIAqXL90cVrTsn5rOS9cHI6KnerQ9Lc3kt0/edit#gid=300901844" target="_blank">Google Sheets Linki</a>
+    <span class="separator"> | </span>
+    <span>Created by <a href="https://github.com/nuuritas" target="_blank">Nuri Taş</a> with ❤️</span>
+  </footer>  
 </body>
 </html>

@@ -91,3 +91,44 @@ table.dataTable thead th {
   font-weight: bold;
   color : #fff;
 }
+
+.circle-container {
+  position: relative;
+}
+
+.white-circle {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border: 2px solid white;
+  border-radius: 50%;
+  top: 0;
+  right: 0;
+}
+
+.circle-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.white-text {
+  color: white;
+}
+
+#footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  background-color: #333;
+  color: white;
+  padding: 10px 0;
+}
+
+#footer a {
+  color: white;
+  text-decoration: none;
+}

@@ -178,6 +178,11 @@ function fetchPortfolio() {
         yAxis: {
           title: {
             text: 'Toplam (₺)'
+          },
+          labels: {
+            style: {
+              color: '#fff'
+            }
           }
         },
         legend: {
@@ -224,4 +229,16 @@ function createTabs() {
     $(this).tab('show');
   });
   $('.nav-tabs a:first').tab('show');
+}
+
+function setCurrentDate() {
+  const currentDate = new Date();
+  const dateString = currentDate.toLocaleDateString('tr-TR', {
+    day: '2-digit',
+    month: 'long',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit'
+  });
+  document.getElementById('update-date').innerText = 'Güncellenme Tarihi: ' + dateString;
 }
