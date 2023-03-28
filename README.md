@@ -1,3 +1,1 @@
-# hisse_takip
-# hisse_takip
-# hisse_takip
+# Nuri Hisse Takip Uygulaması
