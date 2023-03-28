@@ -87,7 +87,7 @@ function createChart() {
     series: [{
       name: 'Ort. Maliyet',
       data: columnData,
-      color: '#fff'
+      color: "olive"
     }, {
       name: 'Güncel Fiyat',
       type: 'line',
@@ -119,7 +119,7 @@ function createChart() {
           format: '<b>{point.name}</b>: {point.y} bin₺ ({point.percentage:.1f}%)',
           style: {
             color: '#fff',
-            fontweight: 200
+            fontweight: 2
         }
       }
     }},
@@ -143,6 +143,7 @@ function fetchPortfolio() {
     .then(data => {
       // console.log(data.values);
       const today = new Date();
+      console.log(today);
       const todayString = today.toLocaleDateString('tr-TR');
       const dates = [];
       const prices = [];
@@ -155,6 +156,7 @@ function fetchPortfolio() {
           prices.push(price);
         }
       }
+      console.log(dates);
       // Create a time series chart
       Highcharts.chart('ts-container', {
         chart: {
@@ -210,8 +212,7 @@ function fetchPortfolio() {
         series: [{
           type : 'area',
           name: 'Portfolyo',
-          data: prices,
-          color: '#5271FF'
+          data: prices
         }]
       });
     })
