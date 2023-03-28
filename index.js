@@ -27,7 +27,6 @@ function createChart() {
   const lineData = data.values.slice(1).map(row => parseFloat(row[3].replace(',', '.')));
   const pieData = data.values.slice(1).map(row => [row[0], parseFloat(row[6].replace(',', '.'))]);
   
-  console.log(pieData);
   // Create the column chart using Highcharts
   Highcharts.chart('chart-container', {
     chart: {
@@ -87,7 +86,7 @@ function createChart() {
     series: [{
       name: 'Ort. Maliyet',
       data: columnData,
-      color: "olive"
+      color: "purple"
     }, {
       name: 'Güncel Fiyat',
       type: 'line',
@@ -241,4 +240,131 @@ function setCurrentDate() {
     minute: '2-digit'
   });
   document.getElementById('update-date').innerText = 'Güncellenme Tarihi: ' + dateString;
+}
+
+function fetchPortfolio2() {
+  const sheetId = "1Hgec6ktnrIAqXL90cVrTsn5rOS9cHI6KnerQ9Lc3kt0";
+  const range = "daily_port!a:m";
+  const apiKey = "AIzaSyCrO9EFJztzVeVh6w8iqlV44VnlyC91_PA";
+  
+  const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
+  
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      // console.log(data.values);
+      const today = new Date();
+      console.log(today);
+      const todayString = today.toLocaleDateString('tr-TR');
+      const dates = [];
+      const prices0 = [];
+      const prices1 = [];
+      const prices2 = [];
+      const prices3 = [];
+      const prices4 = [];
+      const prices5 = [];
+      const prices6 = [];
+      const prices7 = [];
+      const prices8 = [];
+      const prices9 = [];
+      const prices10 = [];
+      for (let i = 1; i < data.values.length; i++) {
+        const row = data.values[i];
+        const date = row[0];
+        const price0 = parseFloat(row[row.length - 2].replace(',', '.'));
+        const price1 = parseFloat(row[row.length - 3].replace(',', '.'));
+        const price2 = parseFloat(row[row.length - 4].replace(',', '.'));
+        const price3 = parseFloat(row[row.length - 5].replace(',', '.'));
+        const price4 = parseFloat(row[row.length - 6].replace(',', '.'));
+        const price5 = parseFloat(row[row.length - 7].replace(',', '.'));
+        const price6 = parseFloat(row[row.length - 8].replace(',', '.'));
+        const price7 = parseFloat(row[row.length - 9].replace(',', '.'));
+        const price8 = parseFloat(row[row.length - 10].replace(',', '.'));
+        const price9 = parseFloat(row[row.length - 11].replace(',', '.'));
+        const price10 = parseFloat(row[row.length - 12].replace(',', '.'));
+        if (new Date(date) <= today) {
+          dates.push(date);
+          prices0.push(price0);
+          prices1.push(price1);
+          prices2.push(price2);
+          prices3.push(price3);
+          prices4.push(price4);
+          prices5.push(price5);
+          prices6.push(price6);
+          prices7.push(price7);
+          prices8.push(price8);
+          prices9.push(price9);
+          prices10.push(price10);
+        }
+      }
+      console.log(dates);
+      // Create a time series chart
+      Highcharts.chart('ts-container', {
+        chart: {
+          type : 'area',
+          backgroundColor: "transparent"
+        },
+        title: {
+          text: 'Günlük Portföy Değeri'
+        },
+        xAxis: {
+          categories: dates,
+          type: 'datetime',
+          labels: {
+            style: {
+              color: '#fff'
+            }
+          }
+        },
+        yAxis: {
+          title: {
+            text: 'Toplam (₺)'
+          },
+          labels: {
+            style: {
+              color: '#fff'
+            }
+          }
+        },
+        legend: {
+          enabled: true,
+          itemStyle: {
+            color: '#fff'
+          }
+        },
+        tooltip: {
+          headerFormat: '<span style="font-size:12px"><b>{point.key}</b></span><br>',
+          shared: true
+        },
+        plotOptions: {
+          area: {
+              stacking: 'normal',
+              lineColor: '#white',
+              lineWidth: 1,
+              marker: {
+                  lineWidth: 2,
+                  lineColor: '#666666'
+              }
+          }
+      },
+      colors : ['purple', 'olive', 
+      'green', 'blue', 
+      'gray', 'green', 
+      'white', 'pink', 
+      'military', 'darkred', '#ff0000'],
+        series: [{name: 'TUPRS',data: prices0},
+        {name: 'SISE',data: prices1},
+        {name: 'SASA',data: prices2},
+        {name: 'SAHOL',data: prices3},
+        {name: 'KCHOL',data: prices4},
+        {name: 'GARAN',data: prices5},
+        {name: 'CFRSA',data: prices6},
+        {name: 'ASELS',data: prices7},
+        {name: 'ALCAR',data: prices8},
+        {name: 'ALARK',data: prices9},
+        {name: 'AKBNK',data: prices10}
+        ]
+      });
+    })
+    .catch(error => console.error(error));
 }
