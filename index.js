@@ -27,6 +27,7 @@ function createChart() {
   const lineData = data.values.slice(1).map(row => parseFloat(row[3].replace(',', '.')));
   const pieData = data.values.slice(1).map(row => [row[0], parseFloat(row[6].replace(',', '.'))]);
   
+  // console.log(pieData);
   // Create the column chart using Highcharts
   Highcharts.chart('chart-container', {
     chart: {
@@ -130,6 +131,42 @@ function createChart() {
     })
 }
 
+function createTabs() {
+  $('.nav-tabs a').click(function(){
+    $(this).tab('show');
+  });
+  $('.nav-tabs a:first').tab('show');
+}
+
+function setCurrentDate() {
+  const currentDate = new Date();
+  const dateString = currentDate.toLocaleDateString('tr-TR', {
+    day: '2-digit',
+    month: 'long',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit'
+  });
+  document.getElementById('update-date').innerText = 'Güncellenme Tarihi: ' + dateString;
+}
+
+function total_money() {
+  const sheetId = "1Hgec6ktnrIAqXL90cVrTsn5rOS9cHI6KnerQ9Lc3kt0";
+  const range = "summary!g:g";
+  const apiKey = "AIzaSyCrO9EFJztzVeVh6w8iqlV44VnlyC91_PA";
+
+  const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
+
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      const total = data.values.slice(1).map(row => parseFloat(row[0].replace(',', '.')));
+      const sum = total.reduce((a, b) => a + b, 0).toFixed(2);
+
+  document.getElementById('total_money').innerText = 'Toplam Portföy: ' + sum + " bin ₺"
+})
+}
+
 function fetchPortfolio() {
   const sheetId = "1Hgec6ktnrIAqXL90cVrTsn5rOS9cHI6KnerQ9Lc3kt0";
   const range = "daily_port!a:m";
@@ -157,7 +194,7 @@ function fetchPortfolio() {
       }
       console.log(dates);
       // Create a time series chart
-      Highcharts.chart('ts-container', {
+      Highcharts.chart('ts-container1', {
         chart: {
           zoomType: 'x',
           backgroundColor: "transparent"
@@ -223,25 +260,6 @@ function fetchPortfolio() {
     .catch(error => console.error(error));
 }
 
-function createTabs() {
-  $('.nav-tabs a').click(function(){
-    $(this).tab('show');
-  });
-  $('.nav-tabs a:first').tab('show');
-}
-
-function setCurrentDate() {
-  const currentDate = new Date();
-  const dateString = currentDate.toLocaleDateString('tr-TR', {
-    day: '2-digit',
-    month: 'long',
-    year: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit'
-  });
-  document.getElementById('update-date').innerText = 'Güncellenme Tarihi: ' + dateString;
-}
-
 function fetchPortfolio2() {
   const sheetId = "1Hgec6ktnrIAqXL90cVrTsn5rOS9cHI6KnerQ9Lc3kt0";
   const range = "daily_port!a:m";
@@ -254,7 +272,7 @@ function fetchPortfolio2() {
     .then(data => {
       // console.log(data.values);
       const today = new Date();
-      console.log(today);
+      // console.log(today);
       const todayString = today.toLocaleDateString('tr-TR');
       const dates = [];
       const prices0 = [];
@@ -297,9 +315,9 @@ function fetchPortfolio2() {
           prices10.push(price10);
         }
       }
-      console.log(dates);
+      
       // Create a time series chart
-      Highcharts.chart('ts-container', {
+      Highcharts.chart('ts-container2', {
         chart: {
           type : 'area',
           backgroundColor: "transparent"
@@ -352,7 +370,8 @@ function fetchPortfolio2() {
       'gray', 'green', 
       'white', 'pink', 
       'military', 'darkred', '#ff0000'],
-        series: [{name: 'TUPRS',data: prices0},
+
+      series: [{name: 'TUPRS',data: prices0},
         {name: 'SISE',data: prices1},
         {name: 'SASA',data: prices2},
         {name: 'SAHOL',data: prices3},
