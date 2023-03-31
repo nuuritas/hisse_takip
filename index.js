@@ -23,9 +23,9 @@ function createChart() {
   
   
   const categories = data.values.slice(1).map(row => row[0]);
-  const columnData = data.values.slice(1).map(row => parseFloat(row[2].replace(',', '.')));
-  const lineData = data.values.slice(1).map(row => parseFloat(row[3].replace(',', '.')));
-  const pieData = data.values.slice(1).map(row => [row[0], parseFloat(row[6].replace(',', '.'))]);
+  const columnData = data.values.slice(1).map(row => parseFloat(row[2].replace(',', '')));
+  const lineData = data.values.slice(1).map(row => parseFloat(row[3].replace(',', '')));
+  const pieData = data.values.slice(1).map(row => [row[0], parseFloat(row[6].replace(',', ''))]);
   
   // console.log(pieData);
   // Create the column chart using Highcharts
@@ -290,17 +290,17 @@ function fetchPortfolio2() {
       for (let i = 1; i < data.values.length; i++) {
         const row = data.values[i];
         const date = row[0];
-        const price0 = parseFloat(row[row.length - 2].replace(',', '.'));
-        const price1 = parseFloat(row[row.length - 3].replace(',', '.'));
-        const price2 = parseFloat(row[row.length - 4].replace(',', '.'));
-        const price3 = parseFloat(row[row.length - 5].replace(',', '.'));
-        const price4 = parseFloat(row[row.length - 6].replace(',', '.'));
-        const price5 = parseFloat(row[row.length - 7].replace(',', '.'));
-        const price6 = parseFloat(row[row.length - 8].replace(',', '.'));
-        const price7 = parseFloat(row[row.length - 9].replace(',', '.'));
-        const price8 = parseFloat(row[row.length - 10].replace(',', '.'));
-        const price9 = parseFloat(row[row.length - 11].replace(',', '.'));
-        const price10 = parseFloat(row[row.length - 12].replace(',', '.'));
+        const price0 = parseFloat(row[row.length - 2].replace(',', ''));
+        const price1 = parseFloat(row[row.length - 3].replace(',', ''));
+        const price2 = parseFloat(row[row.length - 4].replace(',', ''));
+        const price3 = parseFloat(row[row.length - 5].replace(',', ''));
+        const price4 = parseFloat(row[row.length - 6].replace(',', ''));
+        const price5 = parseFloat(row[row.length - 7].replace(',', ''));
+        const price6 = parseFloat(row[row.length - 8].replace(',', ''));
+        const price7 = parseFloat(row[row.length - 9].replace(',', ''));
+        const price8 = parseFloat(row[row.length - 10].replace(',', ''));
+        const price9 = parseFloat(row[row.length - 11].replace(',', ''));
+        const price10 = parseFloat(row[row.length - 12].replace(',', ''));
         if (new Date(date) <= today) {
           dates.push(date);
           prices0.push(price0);
