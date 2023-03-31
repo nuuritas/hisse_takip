@@ -161,7 +161,7 @@ function total_money() {
     .then(response => response.json())
     .then(data => {
       const total = data.values.slice(1).map(row => parseFloat(row[0].replace(',', '')));
-      console.log(total);
+      // console.log(total);
       const sum = total.reduce((a, b) => a + b, 0).toFixed(0);
 
   document.getElementById('total_money').innerText = 'Toplam Portföy: ' + sum + " ₺"
