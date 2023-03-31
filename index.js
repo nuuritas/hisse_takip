@@ -1,6 +1,6 @@
 function createChart() {
 
-  const sheetId = "1Hgec6ktnrIAqXL90cVrTsn5rOS9cHI6KnerQ9Lc3kt0";
+  const sheetId = "1m1uhHHCcu3ts1V9EeStX08j5hZRlAWKaNNHAfTQCcs8";
   const range = "summary!a1:g12";
   const apiKey = "AIzaSyCrO9EFJztzVeVh6w8iqlV44VnlyC91_PA";
 
@@ -151,7 +151,7 @@ function setCurrentDate() {
 }
 
 function total_money() {
-  const sheetId = "1Hgec6ktnrIAqXL90cVrTsn5rOS9cHI6KnerQ9Lc3kt0";
+  const sheetId = "1m1uhHHCcu3ts1V9EeStX08j5hZRlAWKaNNHAfTQCcs8";
   const range = "summary!g:g";
   const apiKey = "AIzaSyCrO9EFJztzVeVh6w8iqlV44VnlyC91_PA";
 
@@ -160,15 +160,16 @@ function total_money() {
   fetch(url)
     .then(response => response.json())
     .then(data => {
-      const total = data.values.slice(1).map(row => parseFloat(row[0].replace(',', '.')));
-      const sum = total.reduce((a, b) => a + b, 0).toFixed(2);
+      const total = data.values.slice(1).map(row => parseFloat(row[0].replace(',', '')));
+      console.log(total);
+      const sum = total.reduce((a, b) => a + b, 0).toFixed(0);
 
-  document.getElementById('total_money').innerText = 'Toplam Portföy: ' + sum + " bin ₺"
+  document.getElementById('total_money').innerText = 'Toplam Portföy: ' + sum + " ₺"
 })
 }
 
 function fetchPortfolio() {
-  const sheetId = "1Hgec6ktnrIAqXL90cVrTsn5rOS9cHI6KnerQ9Lc3kt0";
+  const sheetId = "1m1uhHHCcu3ts1V9EeStX08j5hZRlAWKaNNHAfTQCcs8";
   const range = "daily_port!a:m";
   const apiKey = "AIzaSyCrO9EFJztzVeVh6w8iqlV44VnlyC91_PA";
   
@@ -261,7 +262,7 @@ function fetchPortfolio() {
 }
 
 function fetchPortfolio2() {
-  const sheetId = "1Hgec6ktnrIAqXL90cVrTsn5rOS9cHI6KnerQ9Lc3kt0";
+  const sheetId = "1m1uhHHCcu3ts1V9EeStX08j5hZRlAWKaNNHAfTQCcs8";
   const range = "daily_port!a:m";
   const apiKey = "AIzaSyCrO9EFJztzVeVh6w8iqlV44VnlyC91_PA";
   
