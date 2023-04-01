@@ -19,6 +19,7 @@ function createChart() {
         lengthChange: false
       });
       // initialize DataTable with table object
+      console.log("Table Fetched");
       table.draw();
   
   
@@ -26,6 +27,8 @@ function createChart() {
   const columnData = data.values.slice(1).map(row => parseFloat(row[2].replace(',', '')));
   const lineData = data.values.slice(1).map(row => parseFloat(row[3].replace(',', '')));
   const pieData = data.values.slice(1).map(row => [row[0], parseFloat(row[6].replace(',', ''))]);
+
+  console.log(pieData);
   
   // console.log(pieData);
   // Create the column chart using Highcharts
@@ -180,20 +183,21 @@ function fetchPortfolio() {
     .then(data => {
       // console.log(data.values);
       const today = new Date();
-      console.log(today);
+      // console.log(today);
       const todayString = today.toLocaleDateString('tr-TR');
       const dates = [];
       const prices = [];
       for (let i = 1; i < data.values.length; i++) {
         const row = data.values[i];
         const date = row[0];
-        const price = parseFloat(row[row.length - 1].replace(',', '.'));
+        const price = parseFloat(row[row.length - 1].replace(',', ''));
         if (new Date(date) <= today) {
           dates.push(date);
           prices.push(price);
         }
       }
-      console.log(dates);
+      console.log("Port1 Data Fetched");
+      console.log(prices);
       // Create a time series chart
       Highcharts.chart('ts-container1', {
         chart: {
@@ -317,6 +321,7 @@ function fetchPortfolio2() {
         }
       }
       
+
       // Create a time series chart
       Highcharts.chart('ts-container2', {
         chart: {
