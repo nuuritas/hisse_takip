@@ -16,27 +16,13 @@ table.dataTable th {
     font-family: Montserrat, sans-serif;
     font-weight: bold;
     color : #fff;
+    text-align: center;
   }
 
 table.dataTable thead th {
     background-color: olive;
     color: #fff;
     font-weight: bold;
-}
-
-#footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-    background-color: #333;
-    color: white;
-    padding: 10px 0;
-}
-  
-#footer a {
-    color: white;
-    text-decoration: none;
 }
 
 .circle-container {
@@ -86,3 +72,48 @@ table.dataTable thead th {
 .highcharts-data-labels text {
   fill: #fff !important;
 }
+
+#logout-button {
+    background-color: #333;
+    color: white;
+    border: None;
+  }
+  
+  #logout-btn {
+    background-color: #333;
+    color: red;
+    font-weight: bold;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-block;
+  }
+  
+  #footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    font-size: 14px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+  }
+  
+  #footer a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  #footer a:hover {
+    color: #f2b705;
+    text-decoration: underline;
+  }
+  
+  #footer span {
+    float: center;
+    margin-right: 20px;
+  }
+  

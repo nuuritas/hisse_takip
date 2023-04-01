@@ -111,7 +111,7 @@ function createChart() {
         text: 'Portföy Dağılımı'
       },
       tooltip: {
-        pointFormat: '<b>{point.y} bin₺</b> ({point.percentage:.1f}%)'
+        pointFormat: '<b>{point.y} ₺</b> ({point.percentage:.1f}%)'
       },
       plotOptions: {
         pie: {
@@ -119,7 +119,7 @@ function createChart() {
           cursor: 'pointer',
           dataLabels: {
             enabled: true,
-            format: '<b>{point.name}</b>: {point.y} bin₺ ({point.percentage:.1f}%)',
+            format: '<b>{point.name}</b>: {point.y} ₺ ({point.percentage:.1f}%)',
             style: {
               color: '#fff',
               fontweight: 2
@@ -127,7 +127,7 @@ function createChart() {
         }
       }},
       series: [{
-        name: 'Portföy (bin₺)',
+        name: 'Portföy (₺)',
         data: pieData
       }]
     });  

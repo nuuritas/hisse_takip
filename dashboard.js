@@ -16,3 +16,9 @@ function displayDashboard() {
         });
     });
 }
+
+// Logout button click event
+$('#logout-button').click(function() {
+    window.location.href = 'index.html';
+});
+  
