@@ -1,81 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Dashboard</title>
-  <script src="https://code.highcharts.com/highcharts.js"></script>
-  <script src="https://code.highcharts.com/modules/exporting.js"></script>
-  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+  <title>Finance Tracker</title>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="login.css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
-  <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-  <script src="index.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
-  <link rel="stylesheet" type="text/css" href="index.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 </head>
 <body>
   <body style="background-color: #1a1616;">
     <div id="dashboard-container">
-      <div class="circle-container">
-        <h1>Erdal Kaya Hisse Takibi</h1>
-        <center><h4 id="update-date" class = "white-text">Güncellenme Tarihi: </h4></center>
-        <span class="white-circle">
-          <img src = "ek.jpg" alt = "EK" class = "circle-image" />
-        </span>
-      </div>    
-    <ul class="nav nav-tabs">
-      <li class="active"><a data-toggle="tab" href="#table-tab">Güncel Tablo</a></li>
-      <li><a data-toggle="tab" href="#chart-tab">Maliyet & Portföy Dağılımı</a></li>
-      <li><a data-toggle="tab" href="#port1-tab">Portföy Takip</a></li>
-      <li><a data-toggle="tab" href="#port2-tab">Portföy Takip2</a></li>
-    </ul>
-    <div class="tab-content">
-      <div id="table-tab" class="tab-pane fade in active">
-        <center><h3 id="total_money" class = "white-text">Toplam Portföy: </h3></center>
-        <div id="table-container">
-          <table id="data-table">
-            <thead>
-              <tr></tr>
-            </thead>
-            <tbody></tbody>
-          </table>
-        </div>
       </div>
-      <div id="chart-tab" class="tab-pane fade">
-        <div id="chart-container" style="width: 50%; height: 500px;"></div>
-        <div id="pie-chart-container" style="width: 50%; height: 500px;"></div>
-      </div>
-      <div id="port1-tab" class="tab-pane fade">
-        <div id="ts-container1" style="width: 100%; height: 500px;"></div>
-      </div>
-      <div id="port2-tab" class="tab-pane fade">
-          <div id="ts-container2" style="width: 100%; height: 500px;"></div>
-          
-      </div>
+      <div id="content-container"></div>
     </div>
-  </div>  
-  <script>
-    createChart();
-    fetchPortfolio();
-    fetchPortfolio2();
-    setCurrentDate();
-    total_money();
-
-    // Tabbed interface
-    $('.tab-link').click(function(){
-      const tabId = $(this).attr('data-tab');
-      $('.tab-link').removeClass('current');
-      $('.tab-content').removeClass('current');
-      $(this).addClass('current');
-      $('#'+tabId).addClass('current');
-    });
-  </script>
-  <footer id="footer">
-    <a href="https://docs.google.com/spreadsheets/d/1Hgec6ktnrIAqXL90cVrTsn5rOS9cHI6KnerQ9Lc3kt0/edit#gid=300901844" target="_blank">Google Sheets Linki</a>
-    <span class="separator"> | </span>
-    <span>Made with ❤️ by <a href="https://github.com/nuuritas" target="_blank">Nuri Taş</a></span>
-  </footer>  
-</body>
+  </body>
+  <script src="login.js"></script>
+  <script src="dashboard.js"></script>
 </html>

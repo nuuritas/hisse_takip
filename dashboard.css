@@ -1,0 +1,88 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    color : #fff;
+}
+
+#dashboard-container h1 {
+    color: #fff;
+}
+
+table.dataTable td,
+table.dataTable th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    background-color: #0e0b0b;
+    font-family: Montserrat, sans-serif;
+    font-weight: bold;
+    color : #fff;
+  }
+
+table.dataTable thead th {
+    background-color: olive;
+    color: #fff;
+    font-weight: bold;
+}
+
+#footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+}
+  
+#footer a {
+    color: white;
+    text-decoration: none;
+}
+
+.circle-container {
+    position: relative;
+}
+  
+.white-circle {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border: 2px solid white;
+    border-radius: 50%;
+    top: 0;
+    right: 0;
+}
+  
+.circle-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.nav-tabs {
+    font-family: Montserrat, sans-serif;
+    font-weight: bold;
+    color : #fff;
+}
+
+#dashboard-container h1 {
+    display: block;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+#chart-container,
+#pie-chart-container {
+  width: 50%;
+  float: left;
+}
+
+
+.highcharts-title,
+.highcharts-axis-labels span,
+.highcharts-data-labels text {
+  fill: #fff !important;
+}
