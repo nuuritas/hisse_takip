@@ -1,36 +1,64 @@
-function createChart() {
+function initializeDataTable() {
+  return new Promise((resolve, reject) => {
+    const startTime = new Date();
 
-    const sheetId = "1m1uhHHCcu3ts1V9EeStX08j5hZRlAWKaNNHAfTQCcs8";
-    const range = "summary!a1:g12";
-    const apiKey = "AIzaSyCrO9EFJztzVeVh6w8iqlV44VnlyC91_PA";
-  
-    const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
-  
-    fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        // console.log(data.values);
+    $.ajax({
+      url: 'https://j63o0nohm4.execute-api.eu-central-1.amazonaws.com/default/sql_summary',
+      type: 'GET',
+      dataType: 'json',
+      success: function(data) {
+        const rows = data.map(row => [row.hisse, row.num_of_tr, row.total_qt, row.avg_buy,
+          row.cur_price, row.avg_pl, row.top_pl, row.cur_port]);
+        const columns = ['Hisse', 'İşlem Sayısı', 'Toplam Miktar', 'Ort. Maliyet', 
+          'Güncel Fiyat', 'Ort. K/Z', 'Toplam K/Z', 'Toplam Portföy'];
+
         const table = $('#data-table').DataTable({
-          data: data.values.slice(1),
-          columns: data.values[0].map(header => ({ title: header })),
+          data: rows,
+          columns: columns.map(header => ({ title: header })),
           paging: false,
-          searching : false,
+          searching: false,
           info: false,
           lengthChange: false
         });
-        // initialize DataTable with table object
-        console.log("Table Fetched");
         table.draw();
-    
-    
-    const categories = data.values.slice(1).map(row => row[0]);
-    const columnData = data.values.slice(1).map(row => parseFloat(row[2].replace(',', '')));
-    const lineData = data.values.slice(1).map(row => parseFloat(row[3].replace(',', '')));
-    const pieData = data.values.slice(1).map(row => [row[0], parseFloat(row[6].replace(',', ''))]);
-  
-    // console.log(pieData);
-    
-    // console.log(pieData);
+
+        const categories = data.map(row => row.hisse);
+        const columnData = data.map(row => parseFloat(row.avg_buy));
+        const lineData = data.map(row => parseFloat(row.cur_price));
+        const pieData = data.map(row => [row.hisse, parseFloat(row.cur_port)]);
+
+        const endTime = new Date();
+        console.log(`Time taken: ${endTime - startTime} ms`);
+
+        resolve({ categories, columnData, lineData, pieData });
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        console.log(`Error fetching data: ${textStatus}`);
+        reject(errorThrown);
+      }
+    });
+  });
+}
+
+$(document).ready(function() {
+  if ($.fn.DataTable) {
+    initializeDataTable();
+  } else {
+    console.log('DataTable not loaded yet');
+    $.getScript('https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.js', function() {
+      console.log('DataTable loaded');
+      initializeDataTable();
+    }).fail(function() {
+      console.error('Failed to load DataTables');
+    });
+  }
+});
+
+
+async function createChart() {
+  try {
+    const { categories, columnData, lineData, pieData } = await initializeDataTable();
+
     // Create the column chart using Highcharts
     Highcharts.chart('chart-container', {
       chart: {
@@ -131,7 +159,10 @@ function createChart() {
         data: pieData
       }]
     });  
-      })
+}
+  catch (error) {
+    console.error(error);
+  }
 }
   
 function createTabs() {
@@ -176,7 +207,8 @@ function fetchPortfolio() {
     const range = "daily_port!a:m";
     const apiKey = "AIzaSyCrO9EFJztzVeVh6w8iqlV44VnlyC91_PA";
     
-    const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?valueRenderOption=UNFORMATTED_VALUE&key=${apiKey}`;
+
     
     fetch(url)
       .then(response => response.json())
@@ -265,60 +297,17 @@ function fetchPortfolio() {
   }
   
 function fetchPortfolio2() {
-    const sheetId = "1m1uhHHCcu3ts1V9EeStX08j5hZRlAWKaNNHAfTQCcs8";
-    const range = "daily_port!a:m";
-    const apiKey = "AIzaSyCrO9EFJztzVeVh6w8iqlV44VnlyC91_PA";
-    
-    const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
-    
+      
+    const url = "https://3n8r5eyvsg.execute-api.eu-central-1.amazonaws.com/default/sql_port";
+
     fetch(url)
       .then(response => response.json())
       .then(data => {
-        // console.log(data.values);
-        const today = new Date();
-        // console.log(today);
-        const todayString = today.toLocaleDateString('tr-TR');
-        const dates = [];
-        const prices0 = [];
-        const prices1 = [];
-        const prices2 = [];
-        const prices3 = [];
-        const prices4 = [];
-        const prices5 = [];
-        const prices6 = [];
-        const prices7 = [];
-        const prices8 = [];
-        const prices9 = [];
-        const prices10 = [];
-        for (let i = 1; i < data.values.length; i++) {
-          const row = data.values[i];
-          const date = row[0];
-          const price0 = parseFloat(row[row.length - 2].replace(',', ''));
-          const price1 = parseFloat(row[row.length - 3].replace(',', ''));
-          const price2 = parseFloat(row[row.length - 4].replace(',', ''));
-          const price3 = parseFloat(row[row.length - 5].replace(',', ''));
-          const price4 = parseFloat(row[row.length - 6].replace(',', ''));
-          const price5 = parseFloat(row[row.length - 7].replace(',', ''));
-          const price6 = parseFloat(row[row.length - 8].replace(',', ''));
-          const price7 = parseFloat(row[row.length - 9].replace(',', ''));
-          const price8 = parseFloat(row[row.length - 10].replace(',', ''));
-          const price9 = parseFloat(row[row.length - 11].replace(',', ''));
-          const price10 = parseFloat(row[row.length - 12].replace(',', ''));
-          if (new Date(date) <= today) {
-            dates.push(date);
-            prices0.push(price0);
-            prices1.push(price1);
-            prices2.push(price2);
-            prices3.push(price3);
-            prices4.push(price4);
-            prices5.push(price5);
-            prices6.push(price6);
-            prices7.push(price7);
-            prices8.push(price8);
-            prices9.push(price9);
-            prices10.push(price10);
-          }
-        }
+        const stocks = Object.keys(data[0]).filter(key => key !== "date" && key !== "Toplam");
+        const dates = data.map(row => new Date(row.date).toLocaleDateString("tr-TR"));
+        const prices = stocks.map(stock => data.map(row => row[stock]));
+
+        console.log(stocks);
         
         console.log("Port2 Data Fetched");
         // console.log(prices10);
@@ -326,7 +315,8 @@ function fetchPortfolio2() {
         Highcharts.chart('ts-container2', {
           chart: {
             type : 'area',
-            backgroundColor: "transparent"
+            backgroundColor: "transparent",
+            zoomType: 'x'
           },
           title: {
             text: 'Günlük Portföy Değeri'
@@ -371,24 +361,11 @@ function fetchPortfolio2() {
                 }
             }
         },
-        colors : ['purple', 'olive', 
-        'green', 'blue', 
-        'gray', 'green', 
-        'white', 'pink', 
-        'military', 'darkred', '#ff0000'],
-  
-        series: [{name: 'TUPRS',data: prices0},
-          {name: 'SISE',data: prices1},
-          {name: 'SASA',data: prices2},
-          {name: 'SAHOL',data: prices3},
-          {name: 'KCHOL',data: prices4},
-          {name: 'GARAN',data: prices5},
-          {name: 'CFRSA',data: prices6},
-          {name: 'ASELS',data: prices7},
-          {name: 'ALCAR',data: prices8},
-          {name: 'ALARK',data: prices9},
-          {name: 'AKBNK',data: prices10}
-          ]
+        series: stocks.map((stock, i) => ({
+          name: stock,
+          data: prices[i],
+          color: "#" + Math.floor(Math.random() * 16777215).toString(16)
+        }))
         });
       })
       .catch(error => console.error(error));

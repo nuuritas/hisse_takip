@@ -2,15 +2,18 @@
 <html>
 <head>
   <title>Dashboard Tracker</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
   <script src="https://code.highcharts.com/highcharts.js"></script>
   <script src="https://code.highcharts.com/modules/exporting.js"></script>
   <script src="https://code.highcharts.com/modules/export-data.js"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="dashboard.css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="dashboard.js"></script>
+  <script type="text/javascript" src="chart.js"></script>
 </head>
 <body> 
   <body style="background-color: #1a1616;">
@@ -25,7 +28,7 @@
     <ul class="nav nav-tabs">
       <li class="active"><a data-toggle="tab" href="#table-tab">Güncel Tablo</a></li>
       <li><a data-toggle="tab" href="#chart-tab">Maliyet & Portföy Dağılımı</a></li>
-      <li><a data-toggle="tab" href="#port1-tab">Portföy Takip</a></li>
+      <!-- <li><a data-toggle="tab" href="#port1-tab">Portföy Takip</a></li>  -->
       <li><a data-toggle="tab" href="#port2-tab">Portföy Takip2</a></li>
     </ul>
     <div id="content-container" class="tab-content">
@@ -52,9 +55,6 @@
       </div>
     </div>
   </div>
-  
-  <script src="dashboard.js"></script>
-  <script src="chart.js"></script>
   <footer id="footer">
     <a href="https://docs.google.com/spreadsheets/d/13ZIrRJUqYezy-XTwksmdRD2vuPMq_5f_KoyaaOyW0-M/edit#gid=0" target="_blank">Google Sheets Linki</a>
     <span>Made with ❤️ by <a href="https://github.com/nuuritas" target="_blank">Nuri Taş</a></span>

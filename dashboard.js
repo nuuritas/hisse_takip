@@ -1,7 +1,7 @@
 function displayDashboard() {
     $('#content-container').load('dashboard.html', function() {
         createChart();
-        fetchPortfolio();
+        // fetchPortfolio();
         fetchPortfolio2();
         setCurrentDate();
         total_money();
@@ -18,7 +18,7 @@ function displayDashboard() {
 }
 
 // Logout button click event
-$('#logout-button').click(function() {
+$('#logout-btn').click(function() {
     window.location.href = 'index.html';
 });
   
