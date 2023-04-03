@@ -8,13 +8,22 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 </head>
-<body>
-  <body style="background-color: #1a1616;">
-    <div id="dashboard-container">
-      </div>
-      <div id="content-container"></div>
+<body style="background-color: #1a1616;">
+  <div id="dashboard-container">
+  </div>
+  <div id="content-container">
+    <form>
+      <label for="username">Username:</label><br>
+      <input type="text" id="username" name="username"><br>
+      <label for="password">Password:</label><br>
+      <input type="password" id="password" name="password"><br><br>
+      <input type="submit" value="Login">
+    </form>
+  </div>
+    <div id="image-container">
+      <img src="wb.jpg" id="wb-pic">
     </div>
-  </body>
   <script src="login.js"></script>
   <script src="dashboard.js"></script>
+</body>
 </html>

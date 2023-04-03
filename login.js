@@ -45,6 +45,7 @@ $('#login-form').submit(function(event) {
         // Check if hashed password matches the one in the users file
         if (hashedPassword === user.password) {
           // Redirect to dashboard page
+          $('#wb-pic').remove();
           displayDashboard();
         } else {
           // Display error message

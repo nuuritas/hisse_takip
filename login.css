@@ -61,3 +61,11 @@ background-color: #45a049;
 .login-form label {
 font-weight: bold;
 }
+
+img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+    padding-top: 10px;
+}
