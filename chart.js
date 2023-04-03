@@ -21,6 +21,9 @@ function initializeDataTable() {
           lengthChange: false
         });
         table.draw();
+        // sum is sum of all rows in the last column
+        const sum = data.map(row => parseFloat(row.cur_port)).reduce((a, b) => a + b, 0);
+        document.getElementById('total_money').innerText = 'Toplam Portföy: ' + sum + " ₺";
 
         const categories = data.map(row => row.hisse);
         const columnData = data.map(row => parseFloat(row.avg_buy));
@@ -184,23 +187,7 @@ function createTabs() {
     document.getElementById('update-date').innerText = 'Güncellenme Tarihi: ' + dateString;
   }
   
-  function total_money() {
-    const sheetId = "1m1uhHHCcu3ts1V9EeStX08j5hZRlAWKaNNHAfTQCcs8";
-    const range = "summary!g:g";
-    const apiKey = "AIzaSyCrO9EFJztzVeVh6w8iqlV44VnlyC91_PA";
   
-    const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
-  
-    fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        const total = data.values.slice(1).map(row => parseFloat(row[0].replace(',', '')));
-        // console.log(total);
-        const sum = total.reduce((a, b) => a + b, 0).toFixed(0);
-  
-    document.getElementById('total_money').innerText = 'Toplam Portföy: ' + sum + " ₺"
-  })
-  }
 
 function fetchPortfolio() {
     const sheetId = "1m1uhHHCcu3ts1V9EeStX08j5hZRlAWKaNNHAfTQCcs8";

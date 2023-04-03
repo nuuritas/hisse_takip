@@ -4,7 +4,7 @@ function displayDashboard() {
         // fetchPortfolio();
         fetchPortfolio2();
         setCurrentDate();
-        total_money();
+        // total_money();
 
         
         $('.tab-link').click(function(){
